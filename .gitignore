@@ -1,0 +1,19 @@
+# caches
+__pycache__/
+model/__pycache__/
+
+# azure
+deploy/
+
+# env files
+.env
+
+# runs
+runs
+
+# yaml files
+environment.yml
+deployment.yml
+pipeline.yml
+service.yml
+Dockerfile
