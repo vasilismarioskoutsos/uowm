@@ -1,6 +1,6 @@
 Movie Recommendation System using LightGCN and FIRE
 
-The repository contains 4 main folders:
+The repository contains 6 main folders:
 1. dataset: contains the data downloaded from the MovieLens 100k public dataset and some preprocessed data.
 2. fire: contains the FIRE implementation.
 3. model: contains the LightGCN implementation.
