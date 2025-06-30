@@ -24,38 +24,38 @@ class EdgeDataset(Dataset):
         u = torch.tensor(self.users[idx],   dtype=torch.long)
         i = torch.tensor(self.items[idx],   dtype=torch.long)
         r = torch.tensor(self.ratings[idx], dtype=torch.float32)
+
         return u, i, r
 
 def main():
-    # Load training interaction matrix
+    # load training matrix
     train_coo = load_npz("dataset/processed/train_matrix.npz").tocoo()
     num_users, num_movies = train_coo.shape
 
-    # Build torch sparse tensor for the graph
+    # sparce tensor
     indices = torch.tensor([train_coo.row, train_coo.col], dtype=torch.int64)
     values = torch.tensor(train_coo.data, dtype=torch.float32)
     r_mat = torch.sparse_coo_tensor(indices, values, train_coo.shape)
 
-    # Build normalized adjacency
+    # normalized matrix
     adj = make_adj_from_interaction(r_mat)
     adj = symmetric_normalize_coo(adj)
 
-    # Hyperparameters
+    # hyperparameters
     hidden_dim = 3
     embedding_dim = 64
     lr = 1e-3
     epochs = 100
     batch_size = 128
 
-    # Initialize model and optimizer
+    # init
     model = LightGCN(num_users, hidden_dim, embedding_dim, num_movies, adj, r_mat)
     optimizer = optim.Adam(model.parameters(), lr=lr)
 
-    # Prepare DataLoader
     dataset = EdgeDataset(train_coo)
     loader = DataLoader(dataset, batch_size=batch_size, shuffle=True)
 
-    # Training loop
+    # training loop
     for epoch in range(1, epochs+1):
         model.train()
         total_loss = 0.0
@@ -70,10 +70,10 @@ def main():
 
         print(f"Epoch {epoch}/{epochs}, Loss: {total_loss/len(loader):.4f}")
 
-    # Save final model
+    # save final model
     os.makedirs("run", exist_ok=True)
     torch.save(model.state_dict(), "run/lightgcn_final.pth")
-    print("Training complete")
+    print("training complete")
 
 if __name__ == "__main__":
     main()

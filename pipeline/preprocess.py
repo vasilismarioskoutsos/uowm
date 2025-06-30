@@ -19,18 +19,20 @@ def main():
         if pd.isna(gstr) or not gstr:
             return ""
         ids = [str(name_to_id[g]) for g in gstr.split('|') if g in name_to_id]
+
         return "|".join(ids)
+    
     movies['genres'] = movies['genres'].apply(map_genres)
     movies.to_csv(os.path.join(processed_dir, "processed_movies.csv"), index=False)
 
     mask = np.random.rand(len(ratings)) < 0.8
     np.save(os.path.join(processed_dir, "train_mask.npy"), mask)
 
-    num_users  = ratings['userId'].nunique()
+    num_users = ratings['userId'].nunique()
     num_movies = ratings['movieId'].nunique()
 
     train = ratings[mask]
-    test  = ratings[~mask]
+    test = ratings[~mask]
 
     train_coo = coo_matrix(
         (train['rating'], (train['userId'], train['movieId'])),

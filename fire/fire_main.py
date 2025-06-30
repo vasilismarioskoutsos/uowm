@@ -7,10 +7,10 @@ from model import FIRE
 import fire_metric
 import warnings
 import argparse
+
 os.environ['KMP_DUPLICATE_LIB_OK'] = 'True'
 simplefilter(action="ignore", category=FutureWarning)
 warnings.filterwarnings("ignore")
-
 
 def main():
     parser = argparse.ArgumentParser(description='Set the hyper-parameters for FIRE')
@@ -51,6 +51,7 @@ def main():
         rating = ratings[user]
         rating = torch.from_numpy(rating).view(1, -1)
         user_interacted_items = list(user_interacted_items_dict[user])
+
         rating[0, user_interacted_items] = -999999.0
         ranked_items = torch.topk(rating, k=max(eval(args.topks)))[1].numpy()[0]
         user_prediction_items_list.append(ranked_items)
@@ -58,8 +59,10 @@ def main():
     precisions, recalls, f1_scores, mrrs, ndcgs = fire_metric.calculate_all(user_truth_items_list, user_prediction_items_list, eval(args.topks))
     t3 = time.time()
     print('Test metrics:')
+
     for ind, topk in enumerate(eval(args.topks)):
         print('\t- Top{}:\tF1:{:.4f}\tMRR:{:.4f}\tNDCG:{:.4f}'.format(topk, f1_scores[ind], mrrs[ind], ndcgs[ind]))
+        
     print('Time info:')
     print('\t- Training phase consumes: {:.2f} s'.format(t2 - t1))
     print('\t- Test phase consumes: {:.2f} s'.format(t3 - t2))

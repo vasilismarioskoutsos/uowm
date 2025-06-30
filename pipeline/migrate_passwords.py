@@ -1,7 +1,7 @@
 import csv, os
 from werkzeug.security import generate_password_hash
 
-INFILE  = "pipeline/dataset/users.csv"
+INFILE = "pipeline/dataset/users.csv"
 OUTFILE = INFILE + ".tmp"
 
 with open(INFILE, newline="", encoding="utf-8") as inf, \
@@ -13,11 +13,10 @@ with open(INFILE, newline="", encoding="utf-8") as inf, \
 
     for row in reader:
         pw = row["password"]
-        # detect unhashed/plain (doesn't start with the werkzeug scheme)
         if not pw.startswith("pbkdf2:sha256:"):
             row["password"] = generate_password_hash(pw)
         writer.writerow(row)
 
-# atomically replace the old file:
+# replace the old file
 os.replace(OUTFILE, INFILE)
-print("Migration complete.")
+print("complete")

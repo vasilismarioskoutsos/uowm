@@ -1,4 +1,6 @@
-userId,username,password
-609,vasilis,scrypt:32768:8:1$L4kQUARKRbJo2UVC$74f98dda23caae7b3a9dba2e7b53ec119813c4e7fb5e0f2656abe648af88fad02efd702fcb24a18b2578bbbe445278344a0fb57d0c9a41b00a29ee2d344e0721
-608,anthi,scrypt:32768:8:1$QylEAmDa207dTdzl$9b3a1ab0fd298cc80121f28db4e53edb8767b0543ff367646d6dcab3c4e023338e27fad0b9be330eb50fc280e837c1380f86c9408b7281f5d88c232b099eea7f
-607,giwrgos,scrypt:32768:8:1$mscyHJzIzvmylmhf$c2f70ff95d10466d4e80da07ab5548aeb4abbb449108d682ac29bc270ac5403d190005af4ab06703f659d1e102784775bb524541668f7da29c43e208d45905bf610
+userId,username,password,role
+609,vasilis,123,user
+607,giwrgos,pass,upallilos
+1,giannis,123,user
+3,anthi,123,main
+5,test3,123,user

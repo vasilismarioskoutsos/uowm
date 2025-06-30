@@ -1,0 +1,35 @@
+{
+  "expo": {
+    "name": "mymovies",
+    "slug": "mymovies",
+    "version": "1.0.0",
+    "orientation": "portrait",
+    "icon": "./assets/iconmovie.png",
+    "userInterfaceStyle": "light",
+    "newArchEnabled": true,
+    "splash": {
+      "image": "./assets/splash-iconmovie.png",
+      "resizeMode": "contain",
+      "backgroundColor": "#ffffff"
+    },
+    "ios": {
+      "supportsTablet": true
+    },
+    "android": {
+      "adaptiveIcon": {
+        "foregroundImage": "./assets/adaptive-iconmovie.png",
+        "backgroundColor": "#ffffff"
+      },
+      "edgeToEdgeEnabled": true,
+      "package": "com.anthigeorge158866.mymovies"
+    },
+    "web": {
+      "favicon": "./assets/faviconmovie.png"
+    },
+    "extra": {
+      "eas": {
+        "projectId": "e89966ae-5ff4-4a82-9f3c-84834fac127f"
+      }
+    }
+  }
+}

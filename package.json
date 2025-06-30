@@ -1,0 +1,23 @@
+{
+  "name": "all-in-one",
+  "private": true,
+  "scripts": {
+  "dev": "concurrently -k -n FLASK,WEB,PHP \"python -m pipeline.app\" \"npm --prefix mymovies run web -- --host lan\" \"php -S 0.0.0.0:8000 -t backend\""
+},
+  "devDependencies": {
+    "concurrently": "^9.2.0"
+  },
+  "dependencies": {
+    "@expo/vector-icons": "^14.1.0",
+    "@react-native-async-storage/async-storage": "^2.2.0",
+    "@react-native-picker/picker": "^2.11.1",
+    "@react-navigation/drawer": "^7.5.2",
+    "@react-navigation/native": "^7.1.14",
+    "@react-navigation/native-stack": "^7.3.21",
+    "react-native-gesture-handler": "^2.26.0",
+    "react-native-reanimated": "^3.18.0",
+    "react-native-safe-area-context": "^5.5.0",
+    "react-native-screens": "^4.11.1",
+    "react-native-star-rating-widget": "^1.9.2"
+  }
+}

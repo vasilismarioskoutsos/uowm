@@ -61,11 +61,13 @@ class FIRE(object):
     def get_P1(self, batch_test):
         P1 = batch_test.T @ self.user_filter
         res = self.alpha_list[2] * P1.T
+        
         return res
 
     def get_P2(self, batch_test):
         P2 = batch_test @ self.item_filter
         res = self.alpha_list[3] * P2
+
         return res
 
     def get_P3(self, batch_test):
@@ -74,6 +76,7 @@ class FIRE(object):
         P32 = batch_test @ self.d_mat_i @ self.vt.T @ self.vt @ self.d_mat_i_inv
         P3 = self.alpha_list[0] * P32 + P31
         res = self.alpha_list[1] * P3
+
         return res
 
     def test(self):
@@ -89,4 +92,5 @@ class FIRE(object):
         pool.close()
         pool.join()
         result = sum(r.get() for r in results)
+
         return result

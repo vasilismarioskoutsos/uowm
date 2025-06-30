@@ -4,7 +4,6 @@ import pandas as pd
 import requests
 from dotenv import load_dotenv
 
-# load .env
 load_dotenv()
 TMDB_API_KEY = os.getenv("TMDB_API_KEY")
 if not TMDB_API_KEY:
